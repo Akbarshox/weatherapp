@@ -42,6 +42,21 @@
     color: #f8f8f8;
 }
 
+.minTemp {
+    font-size: 25px;
+    color: #dedede;
+    display: flex;
+    align-items: center;
+}
+
+.humid {
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bolder;
+    color: #fdeaea;
+}
+
 @media (max-width: 600px) {
     .container {
         width: 85%;

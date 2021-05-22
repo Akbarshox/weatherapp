@@ -6,8 +6,8 @@ export default function DayList() {
    const data = useSelector(state => state.reducerWeather.data)
 
    const Days = React.useMemo(() => {
-      const grouped = [...new Set(data.list.map(v => v.dt_txt.substr(0, 10)))].slice(0, 5);
-      // const grouped = data.list.filter((v, i, a) => a.findIndex(t => (t.dt_txt.substr(0, 10) === v.dt_txt.substr(0, 10))) === i).slice(0, 5);
+      // const grouped = [...new Set(data.list.map(v => v.dt_txt.substr(0, 10)))].slice(0, 5);
+      const grouped = data.list.filter((v, i, a) => a.findIndex(t => (t.dt_txt.substr(0, 10) === v.dt_txt.substr(0, 10))) === i).slice(0, 5);
       return grouped
    }, [])
 
@@ -22,7 +22,7 @@ export default function DayList() {
       return a
    }
 
-   const maxTemp = () =>  Math.round(getInfo("2021-05-23").reduce((curr, next) => curr + next, 0) / getInfo("2021-05-23").length)
+   const MaxMin = (v, i) => Math.round(getInfo(v).reduce((curr, next) => curr + next.main[i], 0) / getInfo(v).length);
 
    const getImg = data => `https://openweathermap.org/img/w/${data}.png`;
 
@@ -32,18 +32,21 @@ export default function DayList() {
       return days[num];
    }
    const mainData = Days;
-   console.log(maxTemp())
+
    return (
       <div>
          {mainData.map(v =>
             <div className={style.container}>
                <div className={style.weekName}>
-                  {/*<img src={getImg(v.weather[0].icon)} alt=""/>*/}
-                  <p>{WeekDays(v)}</p>
+                  <img src={getImg(v.weather[0].icon)} alt=""/>
+                  <p>{WeekDays(v.dt_txt.substr(0, 10))}</p>
                </div>
                <div className={style.degree}>
-                  {/*{console.log(getInfo(v, 'avg'))}*/}
-                  {/*{Math.round(v.main.temp_max)}°C*/}
+                  {MaxMin(v.dt_txt.substr(0, 10), "temp_max")}°C/<span
+                  className={style.minTemp}>{MaxMin(v.dt_txt.substr(0, 10), "temp_min")}°C</span>
+               </div>
+               <div className={style.humid}>
+                  Влажность: {MaxMin(v.dt_txt.substr(0, 10), "humidity")}%
                </div>
             </div>
          )}
