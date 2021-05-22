@@ -12,6 +12,7 @@
     margin: auto auto 10px;
     background: #2fa0a5;
     padding: 10px;
+    cursor: pointer;
 }
 
 .weekName img {
@@ -43,7 +44,7 @@
 }
 
 .minTemp {
-    font-size: 25px;
+    font-size: 23px;
     color: #dedede;
     display: flex;
     align-items: center;

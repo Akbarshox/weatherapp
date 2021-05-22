@@ -6,7 +6,6 @@ export default function DayList() {
    const data = useSelector(state => state.reducerWeather.data)
 
    const Days = React.useMemo(() => {
-      // const grouped = [...new Set(data.list.map(v => v.dt_txt.substr(0, 10)))].slice(0, 5);
       const grouped = data.list.filter((v, i, a) => a.findIndex(t => (t.dt_txt.substr(0, 10) === v.dt_txt.substr(0, 10))) === i).slice(0, 5);
       return grouped
    }, [])
