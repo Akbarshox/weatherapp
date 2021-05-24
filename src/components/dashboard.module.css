@@ -6,10 +6,38 @@
     color: #fff;
 }
 
-.container {
-    width: 50%;
-    height: 100px;
+.main {
     margin: auto auto 10px;
+    width: 50%;
+}
+
+.accordion {
+    background: transparent !important;
+    margin: auto auto 10px;
+}
+
+.accordionDetails {
+    display: inline-flex !important;
+    align-items: center;
+    padding-bottom: 0;
+}
+
+.hourly {
+    text-align: center;
+}
+
+.hourly h3 {
+    color: #eeeeee;
+}
+
+.hourly p {
+    color: #dedede;
+}
+
+.container {
+    width: 100%;
+    height: 100px;
+    margin: auto auto auto;
     background: #2fa0a5;
     padding: 10px;
     cursor: pointer;
@@ -60,8 +88,13 @@
 
 @media (max-width: 600px) {
     .container {
-        width: 85%;
+        width: 100%;
     }
+
+    .accordion {
+        width: 90%;
+    }
+
     .header {
         font-size: 20px;
     }
