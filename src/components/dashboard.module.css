@@ -19,7 +19,7 @@
 .accordionDetails {
     display: inline-flex !important;
     align-items: center;
-    padding-bottom: 0;
+    padding-right: 20px;
 }
 
 .hourly {
@@ -28,10 +28,15 @@
 
 .hourly h3 {
     color: #eeeeee;
+    margin-bottom: -10px;
 }
 
 .hourly p {
     color: #dedede;
+}
+
+.hourly img {
+    margin-bottom: -20px;
 }
 
 .container {
