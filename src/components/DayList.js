@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {useSelector} from "react-redux";
 import style from './dashboard.module.css';
 import Collapse from '@material-ui/core/Collapse';
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import {ExpandLess} from "@material-ui/icons";
+import {ExpandLessSharp} from "@material-ui/icons";
+import {ExpandMoreSharp} from "@material-ui/icons";
 
 export default function DayList() {
    const data = useSelector(state => state.reducerWeather.data);
@@ -57,7 +57,9 @@ export default function DayList() {
                   <div className={style.humid}>
                      Влажность: {MaxMin(v.dt_txt.substr(0, 10), "humidity")}%
                   </div>
-                  {/*<ExpandLess />*/}
+                  <div className={style.expanded}>
+                     {expanded === i ? <ExpandLessSharp /> : <ExpandMoreSharp />}
+                  </div>
                </div>
                {getInfo(v.dt_txt.substr(0, 10)).map((el, idx) =>
                   <Collapse in={i === expanded} timeout="auto" className={style.accordionDetails} unmountOnExit>

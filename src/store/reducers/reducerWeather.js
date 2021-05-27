@@ -1,5 +1,7 @@
 const initialState = {
-   data: []
+   data: [],
+   cityName: "Toshkent",
+   error: ""
 }
 
 export default (state = initialState, action) => {
@@ -7,6 +9,14 @@ export default (state = initialState, action) => {
       case 'FETCH_DATA':
          return {
             ...state, data: action.payload
+         }
+      case 'SEARCH':
+         return {
+            ...state, cityName: action.payload
+         }
+      case 'ERROR':
+         return {
+            ...state, error: action.payload
          }
    }
    return state;

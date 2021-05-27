@@ -91,16 +91,30 @@
     color: #fdeaea;
 }
 
+.expanded {
+    text-align: right;
+}
+
+.input {
+    width: 300px;
+    margin: 0 auto 10px auto;
+    display: flex;
+    align-items: revert;
+    justify-content: space-between;
+}
+
+.input button {
+    margin-left: 10px;
+    height: 35px;
+}
+
 @media (max-width: 600px) {
-    .container {
-        width: 100%;
-    }
-
-    .accordion {
-        width: 90%;
-    }
-
     .header {
         font-size: 20px;
+    }
+
+    .main {
+        width: 90%;
+        margin-right: 30px;
     }
 }
