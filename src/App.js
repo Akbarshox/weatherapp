@@ -32,7 +32,13 @@ function App() {
             })
       })
       coors.catch((err) => {
-         console.log(err)
+         axios.get(`/data/2.5/forecast?q=${data.cityName}&units=metric&lang=ru&appid=34a6e040345b5f6a4eead966b144aee7`)
+            .then((res) => {
+               dispatch(allAction.FetchActon.setData(res.data));
+            })
+            .catch((err) => {
+               dispatch(Allactions.FetchActon.setError(true))
+            })
       })
    }, [data.cityName])
 
