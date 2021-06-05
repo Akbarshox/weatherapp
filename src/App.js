@@ -4,7 +4,6 @@ import Dashboard from "./components/Dashboard";
 import './App.css';
 import axios from "./API/api";
 import allAction from "./store/actions/Allactions";
-import Snacks from "./UI/Snackbar";
 import Allactions from "./store/actions/Allactions";
 
 function App() {

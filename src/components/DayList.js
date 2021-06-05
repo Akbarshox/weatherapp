@@ -16,7 +16,7 @@ export default function DayList() {
    const Days = React.useMemo(() => {
       const grouped = data.list.filter((v, i, a) => a.findIndex(t => (t.dt_txt.substr(0, 10) === v.dt_txt.substr(0, 10))) === i).slice(0, 5);
       return grouped
-   }, [])
+   }, [data.list])
 
    const getInfo = (el) => {
       let a = [];
@@ -29,9 +29,12 @@ export default function DayList() {
       return a
    }
 
-   const MaxMin = (v, i) => Math.round(getInfo(v).reduce((curr, next) => curr + next.main[i], 0) / getInfo(v).length);
+   const getterImg = React.useCallback((data) => {
+      return `https://openweathermap.org/img/w/${data}.png`
+   }, []);
 
-   const getImg = data => `https://openweathermap.org/img/w/${data}.png`;
+
+   const MaxMin = (v, i) => Math.round(getInfo(v).reduce((curr, next) => curr + next.main[i], 0) / getInfo(v).length);
 
    const WeekDays = (data) => {
       let num = new Date(data).getDay();
@@ -47,7 +50,7 @@ export default function DayList() {
             <div className={style.main}>
                <div className={style.container} onClick={() => handleExpand(i)}>
                   <div className={style.weekName}>
-                     <img src={getImg(v.weather[0].icon)} alt=""/>
+                     <img src={getterImg(v.weather[0].icon)} alt=""/>
                      <p>{WeekDays(v.dt_txt.substr(0, 10))}</p>
                   </div>
                   <div className={style.degree}>
@@ -58,13 +61,13 @@ export default function DayList() {
                      Влажность: {MaxMin(v.dt_txt.substr(0, 10), "humidity")}%
                   </div>
                   <div className={style.expanded}>
-                     {expanded === i ? <ExpandLessSharp /> : <ExpandMoreSharp />}
+                     {expanded === i ? <ExpandLessSharp/> : <ExpandMoreSharp/>}
                   </div>
                </div>
                {getInfo(v.dt_txt.substr(0, 10)).map((el, idx) =>
                   <Collapse in={i === expanded} timeout="auto" className={style.accordionDetails} unmountOnExit>
                      <div className={style.hourly}>
-                        <img src={getImg(el.weather[0].icon)} alt=""/>
+                        <img src={getterImg(el.weather[0].icon)} alt=""/>
                         <h3>{Math.round(el.main.temp)}°C</h3>
                         <p>{el.dt_txt.substr(11, 5)}</p>
                      </div>
